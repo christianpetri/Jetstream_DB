@@ -6,7 +6,7 @@ class HandelDB
       $this->ini = parse_ini_file('../.ini');
       //echo print_r($this->ini);
       try {
-          $this->conn = new PDO("mysql:host={$this->ini['servername']};dbname={$this->ini['db']};charset=utf8mb4",$this->ini['username'],$this->ini['password']);
+          $this->conn = new PDO("mysql:host={$this->ini['servername']};dbname={$this->ini['dbname']};charset=utf8mb4",$this->ini['username'],$this->ini['password']);
 		//$this->conn = new PDO("mysql:host=mysql.jetstream.christianpetri.ch;dbname=jetstream;charset=utf8mb4","jetstream","awk&dava!");
           // set the PDO error mode to exception
           $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,13 +15,14 @@ class HandelDB
       }
       $this->ini = "";
   }
-  private function select($sql){
+  public function select($sql){
       try {
           $this->connectToDB();
           $stmt = $this->conn->prepare($sql);
           $stmt->execute();
           return $stmt->fetchAll(PDO::FETCH_ASSOC);
       } catch (PDOException $e) {
+          //// TODO: wirte to log file
           echo $e->getMessage();
       }
       $this->disconectFromDB();

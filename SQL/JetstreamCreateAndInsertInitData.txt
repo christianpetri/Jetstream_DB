@@ -1,0 +1,137 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema jetstream
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema jetstream
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `jetstream` DEFAULT CHARACTER SET utf8 ;
+USE `jetstream` ;
+
+-- -----------------------------------------------------
+-- Table `jetstream`.`dienstleistung`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jetstream`.`dienstleistung` (
+  `dienstleistung_id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `dienstleistung_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`dienstleistung_id`),
+  UNIQUE INDEX `dienstleistung_name_UNIQUE` (`dienstleistung_name` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `jetstream`.`prioritaet`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jetstream`.`prioritaet` (
+  `prioritaet_id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `prioritaet_name` VARCHAR(45) NOT NULL,
+  `prioritaet_zusaetzliche_tage` VARCHAR(45) NOT NULL,
+  `prioritaet_tage_bis_zur_fertigstellung` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`prioritaet_id`),
+  UNIQUE INDEX `prioritaet_name_UNIQUE` (`prioritaet_name` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `jetstream`.`status`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jetstream`.`status` (
+  `status_id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `status_name` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`status_id`),
+  UNIQUE INDEX `status_name_UNIQUE` (`status_name` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `jetstream`.`serviceauftrag`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jetstream`.`serviceauftrag` (
+  `serviceautrag_id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `serviceauftrag_kundenname` VARCHAR(45) NOT NULL,
+  `serviceauftrag_email` VARCHAR(45) NULL DEFAULT NULL,
+  `serviceauftrag_telefon` VARCHAR(45) NULL DEFAULT NULL,
+  `status_id` INT(11) UNSIGNED NOT NULL,
+  `dienstleistung_id` INT(11) UNSIGNED NOT NULL,
+  `prioritaet_id` INT(11) UNSIGNED NOT NULL,
+  PRIMARY KEY (`serviceautrag_id`, `status_id`, `dienstleistung_id`, `prioritaet_id`),
+  INDEX `fk_serviceauftrag_status_idx` (`status_id` ASC),
+  INDEX `fk_serviceauftrag_dienstleistung1_idx` (`dienstleistung_id` ASC),
+  INDEX `fk_serviceauftrag_prioritaet1_idx` (`prioritaet_id` ASC),
+  CONSTRAINT `fk_serviceauftrag_status`
+    FOREIGN KEY (`status_id`)
+    REFERENCES `jetstream`.`status` (`status_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_serviceauftrag_dienstleistung1`
+    FOREIGN KEY (`dienstleistung_id`)
+    REFERENCES `jetstream`.`dienstleistung` (`dienstleistung_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_serviceauftrag_prioritaet1`
+    FOREIGN KEY (`prioritaet_id`)
+    REFERENCES `jetstream`.`prioritaet` (`prioritaet_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+USE `jetstream` ;
+
+-- -----------------------------------------------------
+-- Placeholder table for view `jetstream`.`v_dienstleistung`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jetstream`.`v_dienstleistung` (`dienstleistung_id` INT, `dienstleistung_name` INT);
+
+-- -----------------------------------------------------
+-- View `jetstream`.`v_dienstleistung`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `jetstream`.`v_dienstleistung`;
+USE `jetstream`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jetstream`.`v_dienstleistung` AS select `jetstream`.`dienstleistung`.`dienstleistung_id` AS `dienstleistung_id`,`jetstream`.`dienstleistung`.`dienstleistung_name` AS `dienstleistung_name` from `jetstream`.`dienstleistung`;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- begin attached script 'script'
+
+insert into dienstleistung (dienstleistung_name) values
+("Kleiner Service");
+insert into dienstleistung (dienstleistung_name) values
+("Grosser Service");
+insert into dienstleistung (dienstleistung_name) values
+("Rennski-Service");
+insert into dienstleistung (dienstleistung_name) values
+("Bindung montieren und einstellen");
+insert into dienstleistung (dienstleistung_name) values
+("Fell zuschneiden");
+insert into dienstleistung (dienstleistung_name) values
+("Heisswachen");
+
+insert into prioritaet (prioritaet_name, prioritaet_zusaetzliche_tage, prioritaet_tage_bis_zur_fertigstellung)
+values( "Tief", 5, 12);
+
+insert into prioritaet (prioritaet_name, prioritaet_zusaetzliche_tage, prioritaet_tage_bis_zur_fertigstellung)
+values( "Standard", 0, 7);
+insert into prioritaet (prioritaet_name, prioritaet_zusaetzliche_tage, prioritaet_tage_bis_zur_fertigstellung)
+values( "Express", -3, 4);
+
+insert into status (status_name)
+values ("PENDENT");
+
+insert into status (status_name)
+values  ("ABGESCHLOSSEN");
+
+-- end attached script 'script'

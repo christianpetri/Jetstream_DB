@@ -33,11 +33,33 @@
    </head>
 <body>
       <h1>Jetstream</h1>
-      <p> if you see Array ( [0] => Array ( [@@version] => ... ) ) below that means the db connection is working</p>
+      <p> If you see Array ( [0] => Array ( [@@version] => ... ) ) below that means the db connection is working</p>
 <?php
     $result = $DB->getHelloWorld();
    echo print_r($result);
 ?>
-<p>Version 1</p>
+
+<?php
+$result = $DB->select("select * from dienstleistung");
+echo print_r($result);
+?>
+
+<?php
+$result = $DB->select("select * from prioritaet");
+echo print_r($result);
+?>
+
+<?php
+$result = $DB->select("select * from serviceauftrag");
+echo print_r($result);
+?>
+
+<?php
+$result = $DB->select("select * from status");
+echo print_r($result);
+?>
+
+
+<p>Version 3</p>
 </body>
 </html>
