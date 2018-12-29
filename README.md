@@ -11,3 +11,6 @@ dbname="dbname"
 username="username"
 password="MySecretPassword"
 ```
+
+Alertboxen inspiriert durch:
+https://www.cssportal.com/blog/css-notification-boxes/

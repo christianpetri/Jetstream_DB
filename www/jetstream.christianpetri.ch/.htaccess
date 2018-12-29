@@ -2,7 +2,7 @@
 # Enable expirations
 ExpiresActive On
 # Default directive
-ExpiresDefault "access plus 1 month"
+ExpiresDefault "access"
 # My favicon
 ExpiresByType image/x-icon "access plus 1 year"
 # Images

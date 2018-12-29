@@ -1,42 +1,23 @@
 <?php
 date_default_timezone_set('Europe/London');
+define("DOCUMENT_ROOT", $_SERVER["DOCUMENT_ROOT"]);
 function printHeader($title){
 ?>
     <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <title><?php echo $title; ?></title>
     <style type="text/css">
-        html {
-            background-color: black;
-        }
-
-        body {
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-            background-color: white;
-        }
-
-        table.result {
-            border-collapse: collapse;
-        }
-
-        table.result th {
-            border: 1px solid black;
-            padding: 5px;
-        }
-
-        table.result td {
-            border: 1px solid black;
-            padding: 5px;
-        }
-
+        <?php
+            echo file_get_contents(DOCUMENT_ROOT . '/../css/main.css');
+            echo file_get_contents(DOCUMENT_ROOT . '/../css/form.css');
+            echo file_get_contents(DOCUMENT_ROOT . '/../css/message.css');
+            echo file_get_contents(DOCUMENT_ROOT . '/../css/message.css');
+        ?>
     </style>
 </head>
 <body>
-
 <?php
 } ?>
 
