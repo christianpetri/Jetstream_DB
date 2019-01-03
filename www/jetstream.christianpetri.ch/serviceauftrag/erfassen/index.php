@@ -1,36 +1,37 @@
 <?php
-include($_SERVER["DOCUMENT_ROOT"] . "/connect.php");
-include($_SERVER["DOCUMENT_ROOT"] . "/common.php");
+include($_SERVER["DOCUMENT_ROOT"] . "/../database/connect.php");
+include($_SERVER["DOCUMENT_ROOT"] . "/../common/common.php");
 
 printHeader("Serviceauftrag erfassen");
 
 $status = $DB->getStatusDataFormDB();
 $statusOptions = '';
-
+define('OPTION_VALUE', '<option value="');
+define('OPTION', '</option>');
 foreach ($status as $key => $value) {
-    $statusOptions .= '<option value="' . htmlspecialchars($status[$key]['status_id']) . '">' . ($status[$key]['status_name']) . '</option>';
+    $statusOptions .= OPTION_VALUE . htmlspecialchars($status[$key]['status_id']) . '">' . ($status[$key]['status_name']) . OPTION;
 }
 
 $dienstleistung = $DB->getDienstleistungDataFromDB();
 $dienstleistungOptions = '';
 
 foreach ($dienstleistung as $key => $value) {
-    $dienstleistungOptions .= '<option value="' . htmlspecialchars($dienstleistung[$key]['dienstleistung_id']) . '">' . ($dienstleistung[$key]['dienstleistung_name']) . '</option>';
+    $dienstleistungOptions .= OPTION_VALUE . htmlspecialchars($dienstleistung[$key]['dienstleistung_id']) . '">' . ($dienstleistung[$key]['dienstleistung_name']) .OPTION;
 }
 
 $prioritaet = $DB->getPrioritaetDataFormDB();
 $prioritaetOptions = '';
 
 foreach ($prioritaet as $key => $value) {
-    $prioritaetOptions .= '<option value="' . htmlspecialchars($prioritaet[$key]['prioritaet_id']) . '">' . ($prioritaet[$key]['prioritaet_name']) . '</option>';
+    $prioritaetOptions .= OPTION_VALUE . htmlspecialchars($prioritaet[$key]['prioritaet_id']) . '">' . ($prioritaet[$key]['prioritaet_name']) .OPTION;
 }
 
 
 ?>
-    <form method="post" action="/serviceauftrag/controller.php">
+    <form method="post" action="/serviceauftrag/erfassen/controller.php">
         <input type="hidden" name="createNewService" value="1"/>
         <label>Kundenname</label>
-        <input name="serviceauftragKundenname" type="text" value="" required/>
+        <input name="serviceauftragKundenname" type="text" value="" required />
         <label>E-Mail</label>
         <input name="serviceauftragEmail" type="email" required/>
         <label>Telefon</label>
@@ -41,7 +42,7 @@ foreach ($prioritaet as $key => $value) {
             <?php echo $statusOptions ?>
         </select>
         <label>Dienstleistung</label>
-        <select required name="dienstleistungId" value="">
+        <select required name="dienstleistungId">
             <option value=""/>
             <?php echo $dienstleistungOptions ?>
         </select>

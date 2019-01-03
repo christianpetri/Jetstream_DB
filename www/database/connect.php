@@ -232,7 +232,7 @@ class HandelDB
             CALL `spAddServiceauftrag`
             (
                 :serviceauftragKundenname,
-                :serviceauftragEmail  ,
+                :serviceauftragEmail,
                 :serviceauftragTelefon,
                 :statusId,
                 :dienstleistungId,
@@ -250,7 +250,7 @@ class HandelDB
             $stmt->bindParam(':dienstleistungId', $dienstleistung_id, PDO::PARAM_INT);
             $stmt->bindParam(':prioritaetId', $prioritaet_id, PDO::PARAM_INT);
 
-            $stmt->execute();
+            return $stmt->execute();
 
         } catch (PDOException $e) {
             echo $e->getMessage();

@@ -1,24 +1,24 @@
 <?php
-include($_SERVER["DOCUMENT_ROOT"] . "/connect.php");
-include($_SERVER["DOCUMENT_ROOT"] . "/common.php");
+include($_SERVER["DOCUMENT_ROOT"] . "/../database/connect.php");
+include($_SERVER["DOCUMENT_ROOT"] . "/../common/common.php");
 
 printHeader("Serviceauftrag");
 
 $status = $DB->getStatusDataFormDB();
 $statusOptions = '';
-
+define('STATUS_NAME','status_name');
 $result = $DB->getServiceDataForServiceIdFromDB(htmlspecialchars($_GET['id']));
 
 foreach ($status as $key => $value) {
     $statusOptions .= '<option value="' . htmlspecialchars($status[$key]['status_id']) . '"';
-    if( htmlspecialchars($status[$key]['status_name']) ==  htmlspecialchars($result[0]['status_name'])){
+    if( htmlspecialchars($status[$key][STATUS_NAME]) ==  htmlspecialchars($result[0][STATUS_NAME])){
         $statusOptions .= ' selected';
     }
-    $statusOptions .= '>' . ($status[$key]['status_name']) . '</option>';
+    $statusOptions .= '>' . ($status[$key][STATUS_NAME]) . '</option>';
 }
 
 ?>
-    <form method="post" action="/serviceauftrag/controller.php">
+    <form method="post" action="/serviceauftrag/bearbeiten/controller.php">
         <input type="hidden" name="updateService"
                value="1"/>
         <input type="hidden"
