@@ -60,6 +60,7 @@ foreach ($prioritaet as $key => $value) {
             <option value=""/>
             <?php echo $prioritaetOptions ?>
         </select>
+        <input type="button" onclick="history.back();" value="Zurück">
         <input type="submit" value="Abschicken"/>
     </form>
 

@@ -42,6 +42,7 @@ foreach ($status as $key => $value) {
         <select name="statusId">
             <?php echo $statusOptions ?>
         </select>
+        <input type="button" onclick="history.back();" value="Zurück">
         <input type="submit" value="Abschicken"/>
     </form>
 
