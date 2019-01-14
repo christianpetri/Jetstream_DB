@@ -1,11 +1,8 @@
 <?php
-/*
 function printStyle()
 {
-    echo file_get_contents(dirname(__FILE__) . '/main.css');
-    echo file_get_contents(dirname(__FILE__) . '/form.css');
-    echo file_get_contents(dirname(__FILE__) . '/message.css');
+    echo file_get_contents(DOCUMENT_ROOT . '/../css/main.css');
+    echo file_get_contents(DOCUMENT_ROOT . '/../css/form.css');
+    echo file_get_contents(DOCUMENT_ROOT . '/../css/message.css');
 }
-*/
 
-echo "ho";
