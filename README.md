@@ -2,7 +2,7 @@
 
 This is a school project. TS HF Juventus 5th semester IT, subject: database.
 
- [Project description PDF](Jetstream_DB/PA-SkiService.pdf)
+ [Project description PDF](/PA-SkiService.pdf)
       
 # Setup
 
