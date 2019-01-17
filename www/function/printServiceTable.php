@@ -30,6 +30,3 @@ function addTableData($value)
 {
     return '<td>' . htmlspecialchars($value) . '</td>';
 }
-
-//            addTableData($data[$key]['serviceauftrag_erfassungsdatum']).
-//            addTableData($data[$key]['prioritaet_tage_bis_zur_fertigstellung']).

@@ -68,28 +68,4 @@ foreach ($prioritaet as $key => $value) {
     </div>
 <?php
 
-
 printFooter();
-
-/*Die Mitarbeiter sollen die Möglichkeit haben einen neuen Serviceauftrag über ein Formular zu
-erfassen. Ein Serviceauftrag muss folgende Informationen beinhalten:
-- Kundenname .
-- Email .
-- Telefon .
-- Priorität .
-- Status .
-- Dienstleistung . (Angebot), siehe nachfolgende Auflistung. Pro Serviceauftrag kann immer nur
-eine Dienstleistung zugeordnet werden.
-
-
-Die Priorität bestimmt die Anzahl der Tage der Servicearbeit, bis die Skis zur Abholung wieder
-bereitgestellt werden.
-Priorität Zusätzliche Tage Total Tage bis zur Fertigstellung
-Tief +5 12
-Standard 0 7
-Express -3 4
-Das Startdatum eines Auftrags ist immer das aktuelle Datum der Serviceerfassung.
-Das Datum der Fertigstellung soll bei der Auftragserfassung angezeigt, aber nicht verändert werden.
-
-
-*/
