@@ -18,34 +18,38 @@ foreach ($status as $key => $value) {
 }
 
 ?>
-    <form method="post" action="/serviceauftrag/bearbeiten/controller.php">
-        <input type="hidden" name="updateService"
-               value="1"/>
-        <input type="hidden"
-               name="serviceauftragId"
-               value="<?PHP ECHO htmlspecialchars($result[0]['serviceauftrag_id']) ?>"
-        />
-        <input name="serviceauftragKundenname"
-               type="text"
-               value="<?php echo htmlspecialchars($result[0]['serviceauftrag_kundenname']) ?>"
-               required
-        />
-        <input name="serviceauftragEmail"
-               type="email"
-               value="<?php echo htmlspecialchars($result[0]['serviceauftrag_email']) ?>"
-               required
-        />
-        <input name="serviceauftragTelefon"
-               type="tel"
-               value="<?php echo htmlspecialchars($result[0]['serviceauftrag_telefon']) ?>"
-        />
-        <select name="statusId">
-            <?php echo $statusOptions ?>
-        </select>
-        <input type="button" onclick="history.back();" value="Zurück">
-        <input type="submit" value="Abschicken"/>
-    </form>
-
+    <div id="widthForm">
+        <h1>Serviceauftrag bearbeiten</h1>
+        <form method="post" action="/serviceauftrag/bearbeiten/controller.php">
+            <input type="hidden"
+                   name="serviceauftragId"
+                   value="<?PHP ECHO htmlspecialchars($result[0]['serviceauftrag_id']) ?>"
+            />
+            <label>Kundenname</label>
+            <input name="serviceauftragKundenname"
+                   type="text"
+                   value="<?php echo htmlspecialchars($result[0]['serviceauftrag_kundenname']) ?>"
+                   required
+            />
+            <label>E-Mail</label>
+            <input name="serviceauftragEmail"
+                   type="email"
+                   value="<?php echo htmlspecialchars($result[0]['serviceauftrag_email']) ?>"
+                   required
+            />
+            <label>Telefon</label>
+            <input name="serviceauftragTelefon"
+                   type="tel"
+                   value="<?php echo htmlspecialchars($result[0]['serviceauftrag_telefon']) ?>"
+            />
+            <label>Status</label>
+            <select name="statusId">
+                <?php echo $statusOptions ?>
+            </select>
+            <input type="button" onclick="history.back();" value="Zurück">
+            <input type="submit" value="Abschicken"/>
+        </form>
+    </div>
 <?php
 printFooter();
 

@@ -1,11 +1,17 @@
 html {
-    background-color: black;
+    background-color: #2e65ab;
 }
 
 body {
     padding: 20px;
     margin: auto;
+    max-width: 1500px;
     background-color: white;
+}
+
+#widthForm{
+    max-width: 1000px;
+    margin: auto;
 }
 
 table.result {

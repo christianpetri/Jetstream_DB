@@ -4,7 +4,7 @@ function printServiceTable($data)
     $html = '<table class="result">';
     // header row
     $html .= '<tr>';
-    $html .= '<th> Kundenname </th> <th> E-Mail </th> <th> Telefon </th> <th> Dienstleistung </th><th>Priorit&aumlt</th><th>Status</th><th></th>';
+    $html .= '<th> Kundenname </th> <th> E-Mail </th> <th> Telefon </th> <th> Dienstleistung </th><th>Priorit&aumlt</th><th>Auftragsende</th><th>Status</th><th></th>';
     $html .= '</tr>';
     // data rows
     foreach ($data as $key => $value) {
@@ -14,6 +14,8 @@ function printServiceTable($data)
             addTableData($data[$key]['serviceauftrag_telefon']).
             addTableData($data[$key]['dienstleistung_name']).
             addTableData($data[$key]['prioritaet_name']).
+            addTableData(date('d.m.Y', strtotime($data[$key]['serviceauftrag_erfassungsdatum'] . ' + ' .
+                htmlspecialchars($data[$key]['prioritaet_tage_bis_zur_fertigstellung']) . ' days'))).
             addTableData($data[$key]['status_name']);
         $html .= '<td>' . '<a href="/serviceauftrag/bearbeiten?id=' . htmlspecialchars($data[$key]['serviceauftrag_id']) . '">bearbeiten</td>';
         $html .= '</tr>';
@@ -28,3 +30,6 @@ function addTableData($value)
 {
     return '<td>' . htmlspecialchars($value) . '</td>';
 }
+
+//            addTableData($data[$key]['serviceauftrag_erfassungsdatum']).
+//            addTableData($data[$key]['prioritaet_tage_bis_zur_fertigstellung']).

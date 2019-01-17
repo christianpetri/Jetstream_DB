@@ -81,7 +81,9 @@ class HandelDB
                   serviceauftrag_email,  
                   status_name, 
                   prioritaet_name,
-                  dienstleistung_name 
+                  dienstleistung_name,
+                  serviceauftrag_erfassungsdatum,
+                  prioritaet_tage_bis_zur_fertigstellung 
                 FROM v_serviceauftrag;
 				');
     }

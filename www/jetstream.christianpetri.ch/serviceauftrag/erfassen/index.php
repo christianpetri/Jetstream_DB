@@ -37,33 +37,35 @@ foreach ($prioritaet as $key => $value) {
 }
 
 ?>
-    <form method="post" action="/serviceauftrag/erfassen/controller.php">
-        <input type="hidden" name="createNewService" value="1"/>
-        <label>Kundenname</label>
-        <input name="serviceauftragKundenname" type="text" value="" required/>
-        <label>E-Mail</label>
-        <input name="serviceauftragEmail" type="email" required/>
-        <label>Telefon</label>
-        <input name="serviceauftragTelefon" type="text"/>
-        <label>Status</label>
-        <select required name="statusId">
-            <option value=""/>
-            <?php echo $statusOptions ?>
-        </select>
-        <label>Dienstleistung</label>
-        <select required name="dienstleistungId">
-            <option value=""/>
-            <?php echo $dienstleistungOptions ?>
-        </select>
-        <label>Prioritaet</label>
-        <select required name="prioritaetId" value="">
-            <option value=""/>
-            <?php echo $prioritaetOptions ?>
-        </select>
-        <input type="button" onclick="history.back();" value="Zurück">
-        <input type="submit" value="Abschicken"/>
-    </form>
-
+    <div id="widthForm">
+        <h1>Serviceauftrag erfassen</h1>
+        <form method="post" action="/serviceauftrag/erfassen/controller.php">
+            <input type="hidden" name="createNewService" value="1"/>
+            <label>Kundenname</label>
+            <input name="serviceauftragKundenname" type="text" value="" required/>
+            <label>E-Mail</label>
+            <input name="serviceauftragEmail" type="email" required/>
+            <label>Telefon</label>
+            <input name="serviceauftragTelefon" type="text"/>
+            <label>Status</label>
+            <select required name="statusId">
+                <option value=""/>
+                <?php echo $statusOptions ?>
+            </select>
+            <label>Dienstleistung</label>
+            <select required name="dienstleistungId">
+                <option value=""/>
+                <?php echo $dienstleistungOptions ?>
+            </select>
+            <label>Prioritaet</label>
+            <select required name="prioritaetId" value="">
+                <option value=""/>
+                <?php echo $prioritaetOptions ?>
+            </select>
+            <input type="button" onclick="history.back();" value="Zurück">
+            <input type="submit" value="Abschicken"/>
+        </form>
+    </div>
 <?php
 
 
