@@ -43,18 +43,6 @@ class HandelDB
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        $this->disconectFromDB();
-    }
-
-    //close the DB connection
-
-    /**
-     *
-     */
-    private function disconectFromDB()
-    {
-        $this->executeQuery(null);
-        $this->conn = null;
     }
 
     /**
@@ -160,7 +148,6 @@ class HandelDB
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        $this->disconectFromDB();
     }
 
     /**
@@ -208,7 +195,6 @@ class HandelDB
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        $this->disconectFromDB();
     }
 
     /**
@@ -257,7 +243,6 @@ class HandelDB
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        $this->disconectFromDB();
     }
 }
 
