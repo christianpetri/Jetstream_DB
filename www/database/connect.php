@@ -33,7 +33,7 @@ class HandelDB
      * @param $sql
      * @return mixed
      */
-    private function select($sql)
+    private function executeQuery($sql)
     {
         try {
             $this->connectToDB();
@@ -53,7 +53,7 @@ class HandelDB
      */
     private function disconectFromDB()
     {
-        $this->select(null);
+        $this->executeQuery(null);
         $this->conn = null;
     }
 
@@ -62,7 +62,7 @@ class HandelDB
      */
     public function getHelloWorld()
     {
-        return $this->select('
+        return $this->executeQuery('
 				SELECT @@version;
 				');
     }
@@ -72,7 +72,7 @@ class HandelDB
      */
     public function getServiceDataFromDB()
     {
-        return $this->select(
+        return $this->executeQuery(
             '
                 SELECT 
                   serviceauftrag_id, 
@@ -93,7 +93,7 @@ class HandelDB
      */
     public function getDienstleistungDataFromDB()
     {
-        return $this->select(
+        return $this->executeQuery(
             '
             SELECT 
                 dienstleistung_id,
@@ -107,7 +107,7 @@ class HandelDB
      */
     public function getStatusDataFormDB()
     {
-        return $this->select(
+        return $this->executeQuery(
             '
                 Select 
                     status_id, 
@@ -122,7 +122,7 @@ class HandelDB
      */
     public function getPrioritaetDataFormDB()
     {
-        return $this->select(
+        return $this->executeQuery(
             '
                 Select 
                     `prioritaet_id`,
