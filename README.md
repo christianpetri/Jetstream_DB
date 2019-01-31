@@ -18,13 +18,11 @@ servername="mysql.example.ch"
 dbname="dbname"
 username="username"
 password="MySecretPassword"
-```
-
+```  
+Run the sql/*_jestream_dump.sql to initialize the database with example data.
 # Database Schema
 phpMyAdmin MySQL InnoDB
 ![JetstreamSchema](JetstreamSchema.png)  
-
-Run the sql/*_jestream_dump.sql to initialize the database with example data.
 
 ### miscellaneous 
 Alertbox inspired by:
